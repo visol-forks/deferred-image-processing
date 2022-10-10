@@ -31,8 +31,7 @@ class ImageProcessor implements MiddlewareInterface
             if ($processedFile->exists()) {
                 FileRepository::deleteProcessingInstructions($processingInstructions['uid']);
                 $response = $response->withStatus(200)
-                    ->withHeader('Content-type', $processedFile->getMimeType())
-                    ->withHeader('Content-length', (string)$processedFile->getSize());
+                    ->withHeader('Content-type', $processedFile->getMimeType());
                 $response->getBody()->write($processedFile->getContents());
 
                 return $response;
